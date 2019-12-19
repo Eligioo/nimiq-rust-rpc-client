@@ -1,8 +1,5 @@
 use serde::{ Serialize };
 
-pub mod primitives;
-pub mod responses;
-
 #[derive(Debug, Serialize)]
 pub struct RPCRequest {
 	jsonrpc: String,
