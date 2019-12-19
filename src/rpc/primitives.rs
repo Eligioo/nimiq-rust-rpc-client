@@ -52,13 +52,10 @@ pub struct Transaction {
 
 #[derive(Debug, Deserialize)]
 pub struct OutgoingTransaction {
-	from: Address,
-	from_type: i32,
-	to: Address,
-	to_type: i32,
-	value: i32,
-	fee: i32,
-	data: String
+	pub from: &'static str,
+	pub to: &'static str,
+	pub value: i32,
+	pub fee: i32,
 }
 
 #[derive(Debug, Deserialize)]
