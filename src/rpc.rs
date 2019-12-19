@@ -1,14 +1,14 @@
 use serde::{ Serialize };
 
 #[derive(Debug, Serialize)]
-pub struct RPCRequest {
+pub struct RPCRequest <T> {
 	jsonrpc: String,
 	method: String,
-	params: Vec<String>,
+	params: T,
 	id: String
 }
 
-pub fn request_builder(method: String, params: Vec<String>, id: &i32) -> RPCRequest {
+pub fn request_builder<T>(method: String, params: T, id: &i32) -> RPCRequest<T> {
 	RPCRequest {
 		jsonrpc: String::from("2.0"),
 		method: method,

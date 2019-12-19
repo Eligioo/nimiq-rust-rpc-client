@@ -2,7 +2,7 @@ use isahc::prelude::*;
 
 use super::primitives;
 use super::responses;
-use super::rpc::request_builder;
+use super::rpc::{ request_builder, RPCRequest };
 
 #[derive(Debug, Clone)]
 pub struct Client {
@@ -16,7 +16,7 @@ impl Client {
 	}
 
 	pub fn accounts(&self) -> Result<responses::Accounts, Box<dyn std::error::Error>>{
-		let request = request_builder(String::from("accounts"), vec!(), &self.id);
+		let request: RPCRequest<Vec<String>> = request_builder(String::from("accounts"), vec!(), &self.id);
 
 		let response = Request::post(&self.host)
 			.header("content-type", "application/json")
@@ -31,7 +31,7 @@ impl Client {
 	}
 
 	pub fn consensus(&self) -> Result<responses::Consensus, Box<dyn std::error::Error>>{
-		let request = request_builder(String::from("consensus"), vec!(), &self.id);
+		let request: RPCRequest<Vec<String>> = request_builder(String::from("consensus"), vec!(), &self.id);
 
 		let response = Request::post(&self.host)
 			.header("content-type", "application/json")
@@ -46,7 +46,7 @@ impl Client {
 	}
 
 	pub fn create_account(&self) -> Result<responses::CreateAccount, Box<dyn std::error::Error>>{
-		let request = request_builder(String::from("createAccount"), vec!(), &self.id);
+		let request: RPCRequest<Vec<String>> = request_builder(String::from("createAccount"), vec!(), &self.id);
 
 		let response = Request::post(&self.host)
 			.header("content-type", "application/json")
@@ -61,7 +61,7 @@ impl Client {
 	}
 
 	pub fn create_raw_transaction(&self, raw_transaction: &primitives::OutgoingTransaction) -> Result<responses::CreateRawTransaction, Box<dyn std::error::Error>>{
-		let request = request_builder(String::from("createRawTransaction"), vec!(), &self.id);
+		let request = request_builder(String::from("createRawTransaction"), raw_transaction, &self.id);
 
 		let response = Request::post(&self.host)
 			.header("content-type", "application/json")
@@ -76,7 +76,7 @@ impl Client {
 	}
 
 	pub fn block_number(&self) -> Result<responses::BlockNumber, Box<dyn std::error::Error>>{
-		let request = request_builder(String::from("blockNumber"), vec!(), &self.id);
+		let request: RPCRequest<Vec<String>> = request_builder(String::from("blockNumber"), vec!(), &self.id);
 
 		let response = Request::post(&self.host)
 			.header("content-type", "application/json")
@@ -91,7 +91,7 @@ impl Client {
 	}
 
 	pub fn hashrate(&self) -> Result<responses::Hashrate, Box<dyn std::error::Error>>{
-		let request = request_builder(String::from("hashrate"), vec!(), &self.id);
+		let request: RPCRequest<Vec<String>> = request_builder(String::from("hashrate"), vec!(), &self.id);
 
 		let response = Request::post(&self.host)
 			.header("content-type", "application/json")
@@ -106,7 +106,7 @@ impl Client {
 	}
 
 	pub fn log(&self, tag: &str, level: &str) -> Result<responses::Log, Box<dyn std::error::Error>>{
-		let request = request_builder(String::from("log"), vec!(String::from(tag), String::from(level)), &self.id);
+		let request: RPCRequest<Vec<String>> = request_builder(String::from("log"), vec!(String::from(tag), String::from(level)), &self.id);
 		
 		let response = Request::post(&self.host)
 			.header("content-type", "application/json")

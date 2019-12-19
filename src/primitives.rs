@@ -1,4 +1,4 @@
-use serde::{ Deserialize };
+use serde::{ Deserialize, Serialize };
 
 #[derive(Debug, Deserialize)]
 pub struct Address {
@@ -50,7 +50,7 @@ pub struct Transaction {
 	flags: i32
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct OutgoingTransaction {
 	pub from: &'static str,
 	pub to: &'static str,
