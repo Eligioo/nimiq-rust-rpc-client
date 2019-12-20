@@ -15,39 +15,53 @@ pub struct Account {
 }
 
 #[derive(Debug, Deserialize)]
-pub struct Block {
-	number: i32,
-	hash: String,
-	pow: String,
-	parent_hash: String,
-	nonce: i32,
-	body_hash: String,
-	account_hash: String,
-	miner: String,
-	miner_address: String,
-	difficulty: String,
-	extra_data: String,
-	size: i32,
-	timestamp: i32,
-	transactions: Vec<Transaction>
+#[serde(rename_all = "camelCase")]
+#[serde(untagged)] //TODO untagged for now, have to look more into this
+pub enum TransactionSequence{
+	TransactionHashSequence(Vec<String>),
+	TransactionSequence(Vec<Transaction>)
 }
 
 #[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Block {
+	pub number: i32,
+	pub hash: String,
+	pub pow: String,
+	pub parent_hash: String,
+	pub nonce: i64,
+	pub body_hash: String,
+	pub accounts_hash: String,
+	pub miner: String,
+	pub miner_address: String,
+	pub difficulty: String,
+	pub extra_data: String,
+	pub size: i32,
+	pub timestamp: i32,
+	pub transactions: TransactionSequence
+}
+
+#[derive(Default, Debug, Clone, PartialEq, serde_derive::Serialize, serde_derive::Deserialize)]
 pub struct Transaction {
 	hash: String,
+	#[serde(rename = "blockHash")]
 	block_hash: String,
-	block_number: i32,
-	timestamp: i32,
-	confirmations: i32,
-	transaction_index: i32,
+	#[serde(rename = "blockNumber")]
+	block_number: i64,
+	timestamp: i64,
+	confirmations: i64,
+	#[serde(rename = "transactionIndex")]
+	transaction_index: i64,
 	from: String,
+	#[serde(rename = "fromAddress")]
 	from_address: String,
 	to: String,
+	#[serde(rename = "toAddress")]
 	to_address: String,
-	value: i32,
-	fee: i32,
-	data: String,
-	flags: i32
+	value: i64,
+	fee: i64,
+	data: ::serde_json::Value,
+	flags: i64
 }
 
 #[derive(Debug, Deserialize, Serialize)]

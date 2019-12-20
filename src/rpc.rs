@@ -1,4 +1,4 @@
-use serde::{ Serialize };
+use serde::{ Deserialize, Serialize };
 
 #[derive(Debug, Serialize)]
 pub struct RPCRequest <T> {
@@ -6,6 +6,13 @@ pub struct RPCRequest <T> {
 	method: String,
 	params: T,
 	id: String
+}
+
+#[derive(Debug, Deserialize)]
+pub struct RPCResponse <T> {
+	pub id: String,
+	pub jsonrpc: String,
+	pub result: T
 }
 
 pub fn request_builder<T>(method: String, params: T, id: &i32) -> RPCRequest<T> {
