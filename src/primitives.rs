@@ -59,9 +59,9 @@ pub struct OutgoingTransaction {
 }
 
 #[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct Wallet {
 	id: String,
 	address: String,
-	public_key: String,
-	private_key: String,
+	public_key: String
 }
