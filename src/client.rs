@@ -30,6 +30,21 @@ impl Client {
 		}
 	}
 
+	pub fn block_number(&self) -> Result<responses::BlockNumber, Box<dyn std::error::Error>>{
+		let request: RPCRequest<Vec<String>> = request_builder(String::from("blockNumber"), vec!(), &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<responses::BlockNumber>();
+
+		match response {
+			Ok(v) => Ok(v),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
 	pub fn consensus(&self) -> Result<responses::Consensus, Box<dyn std::error::Error>>{
 		let request: RPCRequest<Vec<String>> = request_builder(String::from("consensus"), vec!(), &self.id);
 
@@ -68,21 +83,6 @@ impl Client {
 			.body(serde_json::to_vec(&request)?)?
 			.send()?
 			.json::<responses::CreateRawTransaction>();
-
-		match response {
-			Ok(v) => Ok(v),
-			Err(e) => panic!(e.to_string())
-		}
-	}
-
-	pub fn block_number(&self) -> Result<responses::BlockNumber, Box<dyn std::error::Error>>{
-		let request: RPCRequest<Vec<String>> = request_builder(String::from("blockNumber"), vec!(), &self.id);
-
-		let response = Request::post(&self.host)
-			.header("content-type", "application/json")
-			.body(serde_json::to_vec(&request)?)?
-			.send()?
-			.json::<responses::BlockNumber>();
 
 		match response {
 			Ok(v) => Ok(v),
