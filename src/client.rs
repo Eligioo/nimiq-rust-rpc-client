@@ -90,6 +90,21 @@ impl Client {
 		}
 	}
 
+	pub fn get_account(&self, id: &str) -> Result<responses::GetAccount, Box<dyn std::error::Error>>{
+		let request: RPCRequest<Vec<String>> = request_builder(String::from("getAccount"), vec!(String::from(id)), &self.id);
+		
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<responses::GetAccount>();
+
+		match response {
+			Ok(v) => Ok(v),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
 	pub fn hashrate(&self) -> Result<responses::Hashrate, Box<dyn std::error::Error>>{
 		let request: RPCRequest<Vec<String>> = request_builder(String::from("hashrate"), vec!(), &self.id);
 
