@@ -43,6 +43,13 @@ pub struct GetAccount {
 }
 
 #[derive(Debug, Deserialize)]
+pub struct GetBalance {
+	id: String,
+  jsonrpc: String,
+	result: i32,
+}
+
+#[derive(Debug, Deserialize)]
 pub struct Hashrate {
 	pub id: String,
 	pub jsonrpc: String,
