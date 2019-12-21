@@ -1,5 +1,5 @@
 # nimiq-rust-rpc-client
-A Nimiq RPC client for the Rust Programming language
+A Nimiq RPC client for the Rust programming language
 
 
 # Example:
