@@ -15,7 +15,7 @@ impl Client {
 	}
 
 	pub fn accounts(&self) -> Result<Vec<super::primitives::Account>, Box<dyn std::error::Error>>{
-		let request: RPCRequest<Vec<String>> = request_builder(String::from("accounts"), vec!(), &self.id);
+		let request = request_builder(String::from("accounts"), (), &self.id);
 
 		let response = Request::post(&self.host)
 			.header("content-type", "application/json")
@@ -30,7 +30,7 @@ impl Client {
 	}
 
 	pub fn block_number(&self) -> Result<i32, Box<dyn std::error::Error>>{
-		let request: RPCRequest<Vec<String>> = request_builder(String::from("blockNumber"), vec!(), &self.id);
+		let request = request_builder(String::from("blockNumber"), (), &self.id);
 
 		let response = Request::post(&self.host)
 			.header("content-type", "application/json")
@@ -45,7 +45,7 @@ impl Client {
 	}
 
 	pub fn consensus(&self) -> Result<String, Box<dyn std::error::Error>>{
-		let request: RPCRequest<Vec<String>> = request_builder(String::from("consensus"), vec!(), &self.id);
+		let request = request_builder(String::from("consensus"), (), &self.id);
 
 		let response = Request::post(&self.host)
 			.header("content-type", "application/json")
@@ -60,7 +60,7 @@ impl Client {
 	}
 
 	pub fn create_account(&self) -> Result<primitives::Wallet, Box<dyn std::error::Error>>{
-		let request: RPCRequest<Vec<String>> = request_builder(String::from("createAccount"), vec!(), &self.id);
+		let request = request_builder(String::from("createAccount"), (), &self.id);
 
 		let response = Request::post(&self.host)
 			.header("content-type", "application/json")
@@ -119,8 +119,8 @@ impl Client {
 		}
 	}
 
-	pub fn get_block_by_hash(&self, id: &str, full_transactions: bool) -> Result<primitives::Block, Box<dyn std::error::Error>>{
-		let request = request_builder(String::from("getBlockByHash"), (id, full_transactions), &self.id);
+	pub fn get_block_by_hash(&self, block_hash: &str, full_transactions: bool) -> Result<primitives::Block, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("getBlockByHash"), (block_hash, full_transactions), &self.id);
 
 		let response = Request::post(&self.host)
 			.header("content-type", "application/json")
@@ -134,8 +134,143 @@ impl Client {
 		}
 	}
 
+	pub fn get_block_by_number(&self, block_number: i32, full_transactions: bool) -> Result<primitives::Block, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("getBlockByNumber"), (block_number, full_transactions), &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<primitives::Block>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn get_block_transaction_count_by_hash(&self, block_hash: &str) -> Result<i32, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("getBlockTransactionCountByHash"), block_hash, &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<i32>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn get_block_transaction_count_by_number(&self, block_number: i32) -> Result<i32, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("getBlockTransactionCountByNumber"), block_number, &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<i32>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn get_transaction_by_block_hash_and_index(&self, block_hash: &str, index: i32) -> Result<primitives::Transaction, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("getTransactionByBlockHashAndIndex"), (block_hash, index), &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<primitives::Transaction>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn get_transaction_by_block_number_and_index(&self, block_number: i32, index: i32) -> Result<primitives::Transaction, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("getTransactionByBlockNumberAndIndex"), (block_number, index), &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<primitives::Transaction>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn get_transaction_by_hash(&self, transaction_hash: &str) -> Result<primitives::Transaction, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("getTransactionByHash"), transaction_hash, &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<primitives::Transaction>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn get_transaction_receipt(&self, transaction_hash: &str) -> Result<primitives::TransactionReceipt, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("getTransactionReceipt"), transaction_hash, &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<primitives::TransactionReceipt>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn get_transactions_by_address(&self, address: &str, amount: i32) -> Result<Vec<primitives::Transaction>, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("getTransactionsByAddress"), (address, amount), &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<Vec<primitives::Transaction>>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn get_work(&self) -> Result<primitives::GetWork, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("getWork"), (), &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<primitives::GetWork>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
 	pub fn hashrate(&self) -> Result<i32, Box<dyn std::error::Error>>{
-		let request: RPCRequest<Vec<String>> = request_builder(String::from("hashrate"), vec!(), &self.id);
+		let request = request_builder(String::from("hashrate"), (), &self.id);
 
 		let response = Request::post(&self.host)
 			.header("content-type", "application/json")
