@@ -149,6 +149,21 @@ impl Client {
 		}
 	}
 
+	pub fn get_block_template(&self) -> Result<primitives::FullBlock, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("getBlockTemplate"), (), &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<primitives::FullBlock>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
 	pub fn get_block_transaction_count_by_hash(&self, block_hash: &str) -> Result<i32, Box<dyn std::error::Error>>{
 		let request = request_builder(String::from("getBlockTransactionCountByHash"), block_hash, &self.id);
 
@@ -292,6 +307,261 @@ impl Client {
 			.body(serde_json::to_vec(&request)?)?
 			.send()?
 			.json::<RPCResponse<bool>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn mempool_content(&self) -> Result<Vec<String>, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("mempoolContent"), (), &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<Vec<String>>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn miner_address(&self) -> Result<String, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("minerAddress"), (), &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<String>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn miner_threads(&self) -> Result<u8, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("minerThreads"), (), &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<u8>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn miner_threads_with_update(&self, threads: i16) -> Result<i16, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("minerThreads"), threads, &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<i16>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn min_fee_per_byte(&self) -> Result<u32, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("minFeePerByte"), (), &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<u32>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn min_fee_per_byte_with_update(&self, fee: u32) -> Result<u32, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("minFeePerByte"), fee, &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<u32>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn mining(&self) -> Result<bool, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("mining"), (), &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<bool>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn peer_count(&self) -> Result<i8, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("peerCount"), (), &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<i8>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn peer_list(&self) -> Result<Vec<primitives::PeerList>, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("peerList"), (), &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<Vec<primitives::PeerList>>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn peer_state(&self, peer_address: &str) -> Result<primitives::PeerState, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("peerState"), peer_address, &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<primitives::PeerState>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn peer_state_with_update(&self, peer_address: &str, set: &str) -> Result<primitives::PeerState, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("peerState"), (peer_address, set), &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<primitives::PeerState>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn pool_confirmed_balance(&self) -> Result<u64, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("poolConfirmedBalance"), (), &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<u64>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn pool_connection_state(&self) -> Result<u8, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("poolConnectionState"), (), &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<u8>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn send_raw_transaction(&self, transaction_hash: &str) -> Result<String, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("sendRawTransaction"), transaction_hash, &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<String>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn send_transaction(&self, transaction: &primitives::OutgoingTransaction) -> Result<String, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("sendTransaction"), transaction, &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<String>>();
+
+		match response {
+			Ok(v) => Ok(v.result),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn submit_block(&self, full_block: &str) -> Result<(), Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("submitWork"), full_block, &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<()>();
+
+		match response {
+			Ok(v) => Ok(v),
+			Err(e) => panic!(e.to_string())
+		}
+	}
+
+	pub fn syncing(&self) -> Result<primitives::Syncing, Box<dyn std::error::Error>>{
+		let request = request_builder(String::from("syncing"), (), &self.id);
+
+		let response = Request::post(&self.host)
+			.header("content-type", "application/json")
+			.body(serde_json::to_vec(&request)?)?
+			.send()?
+			.json::<RPCResponse<primitives::Syncing>>();
 
 		match response {
 			Ok(v) => Ok(v.result),

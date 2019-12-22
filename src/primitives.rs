@@ -34,11 +34,90 @@ pub struct Block {
 }
 
 #[derive(Debug, serde_derive::Serialize, serde_derive::Deserialize)]
+pub struct FullBlock {
+    pub header: Header,
+    pub interlink: String,
+    pub target: i64,
+    pub body: Body
+}
+
+#[derive(Debug, serde_derive::Serialize, serde_derive::Deserialize)]
+pub struct Header {
+    pub version: i64,
+    #[serde(rename = "prevHash")]
+    pub prev_hash: String,
+    #[serde(rename = "interlinkHash")]
+    pub interlink_hash: String,
+    #[serde(rename = "accountsHash")]
+    pub accounts_hash: String,
+    #[serde(rename = "nBits")]
+    pub n_bits: i64,
+    pub height: i64
+}
+
+#[derive(Debug, serde_derive::Serialize, serde_derive::Deserialize)]
+pub struct Body {
+    hash: String,
+    #[serde(rename = "minerAddr")]
+    miner_addr: String,
+    #[serde(rename = "extraData")]
+    extra_data: String,
+    transactions: Vec<String>,
+    #[serde(rename = "merkleHashes")]
+    merkle_hashes: Vec<String>,
+    #[serde(rename = "prunedAccounts")]
+    pruned_accounts: Vec<String>,
+}
+
+#[derive(Debug, serde_derive::Serialize, serde_derive::Deserialize)]
 pub struct GetWork {
 	pub data: String,
 	pub suffix: String,
 	pub target: i64,
 	pub algorithm: String
+}
+
+#[derive(Debug, serde_derive::Serialize, serde_derive::Deserialize)]
+pub struct PeerList {
+	pub id: String,
+	pub address: String,
+	#[serde(rename = "addressState")]
+	pub address_state: i64,
+	#[serde(rename = "connectionState")]
+	pub connection_state: Option<i64>,
+	pub version: Option<i64>,
+	#[serde(rename = "timeOffset")]
+	pub time_offset: Option<i64>,
+	#[serde(rename = "headHash")]
+	pub head_hash: Option<String>,
+	pub latency: Option<i64>,
+	pub rx: Option<i64>,
+	pub tx: Option<i64>
+}
+
+#[derive(Debug, serde_derive::Serialize, serde_derive::Deserialize)]
+pub struct PeerState {
+	pub id: String,
+	pub address: String,
+	#[serde(rename = "addressState")]
+	pub address_state: u8
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(untagged)] //TODO untagged for now
+pub enum Syncing {
+	IsSyncing(bool),
+	Pending(Pending)
+}
+
+#[derive(Debug, serde_derive::Serialize, serde_derive::Deserialize)]
+pub struct Pending {
+	#[serde(rename = "startingBlock")]
+	starting_block: u64,
+	#[serde(rename = "currentBlock")]
+	current_block: u64,
+	#[serde(rename = "highestBlock")]
+	highest_block: u64
 }
 
 #[derive(Debug, serde_derive::Serialize, serde_derive::Deserialize)]
