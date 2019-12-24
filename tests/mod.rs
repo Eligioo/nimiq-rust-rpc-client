@@ -3,7 +3,7 @@ mod tests {
   use nimiq_rpc::*;
 
   fn client() -> Client {
-    let host = "http://seed01.nimiq.ovh:8648";
+    let host = "http://seed-host.com:8648";
 
     if host == "http://seed-host.com:8648" || host == "http://seed-host.com:8648/" {
       panic!("You have to change the host to your RPC server in the tests!")
