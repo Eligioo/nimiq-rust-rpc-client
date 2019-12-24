@@ -24,11 +24,11 @@ mod tests {
     assert_eq!(client.consensus().unwrap(), "established");
   }
 
-  #[test]
-  fn create_account() {
-    let client = client();
-    client.create_account().unwrap();
-  }
+  // #[test]
+  // fn create_account() {
+  //   let client = client();
+  //   client.create_account().unwrap();
+  // }
 
   #[test]
   fn get_block_by_hash() {
