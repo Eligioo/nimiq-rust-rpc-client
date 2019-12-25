@@ -10,26 +10,26 @@ pub struct Address {
 pub struct Account {
 	pub id: String,
 	pub address: String,
-	pub balance: i32,
-	pub r#type: i32
+	pub balance: u64,
+	pub r#type: u8
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Block {
-	pub number: i32,
+	pub number: u64,
 	pub hash: String,
 	pub pow: String,
 	pub parent_hash: String,
-	pub nonce: i64,
+	pub nonce: u64,
 	pub body_hash: String,
 	pub accounts_hash: String,
 	pub miner: String,
 	pub miner_address: String,
 	pub difficulty: String,
 	pub extra_data: String,
-	pub size: i32,
-	pub timestamp: i32,
+	pub size: u32,
+	pub timestamp: u64,
 	pub transactions: TransactionSequence
 }
 
@@ -37,13 +37,13 @@ pub struct Block {
 pub struct FullBlock {
     pub header: Header,
     pub interlink: String,
-    pub target: i64,
+    pub target: u64,
     pub body: Body
 }
 
 #[derive(Debug, serde_derive::Serialize, serde_derive::Deserialize)]
 pub struct Header {
-    pub version: i64,
+    pub version: u64,
     #[serde(rename = "prevHash")]
     pub prev_hash: String,
     #[serde(rename = "interlinkHash")]
@@ -51,8 +51,8 @@ pub struct Header {
     #[serde(rename = "accountsHash")]
     pub accounts_hash: String,
     #[serde(rename = "nBits")]
-    pub n_bits: i64,
-    pub height: i64
+    pub n_bits: u64,
+    pub height: u64
 }
 
 #[derive(Debug, serde_derive::Serialize, serde_derive::Deserialize)]
@@ -73,7 +73,7 @@ pub struct Body {
 pub struct GetWork {
 	pub data: String,
 	pub suffix: String,
-	pub target: i64,
+	pub target: u64,
 	pub algorithm: String
 }
 
@@ -82,17 +82,17 @@ pub struct PeerList {
 	pub id: String,
 	pub address: String,
 	#[serde(rename = "addressState")]
-	pub address_state: i64,
+	pub address_state: u64,
 	#[serde(rename = "connectionState")]
-	pub connection_state: Option<i64>,
-	pub version: Option<i64>,
+	pub connection_state: Option<u64>,
+	pub version: Option<u64>,
 	#[serde(rename = "timeOffset")]
-	pub time_offset: Option<i64>,
+	pub time_offset: Option<u64>,
 	#[serde(rename = "headHash")]
 	pub head_hash: Option<String>,
-	pub latency: Option<i64>,
-	pub rx: Option<i64>,
-	pub tx: Option<i64>
+	pub latency: Option<u64>,
+	pub rx: Option<u64>,
+	pub tx: Option<u64>
 }
 
 #[derive(Debug, serde_derive::Serialize, serde_derive::Deserialize)]
@@ -126,9 +126,9 @@ pub struct Transaction {
 	#[serde(rename = "blockHash")]
 	pub block_hash: String,
 	#[serde(rename = "blockNumber")]
-	pub block_number: i64,
-	pub timestamp: i64,
-	pub confirmations: i64,
+	pub block_number: u64,
+	pub timestamp: u64,
+	pub confirmations: u64,
 	#[serde(rename = "transactionIndex")]
 	#[serde(skip_deserializing)] //TODO skip deserializing, have to look into making field optional
 	transaction_index: ::serde_json::Value,
@@ -138,10 +138,10 @@ pub struct Transaction {
 	pub to: String,
 	#[serde(rename = "toAddress")]
 	pub to_address: String,
-	pub value: i64,
-	pub fee: i64,
+	pub value: u64,
+	pub fee: u64,
 	pub data: ::serde_json::Value,
-	pub flags: i64
+	pub flags: u32
 }
 
 #[derive(Debug, serde_derive::Serialize, serde_derive::Deserialize)]
@@ -149,13 +149,13 @@ pub struct TransactionReceipt {
 	#[serde(rename = "transactionHash")]
 	pub transaction_hash: String,
 	#[serde(rename = "transactionIndex")]
-	pub transaction_index: i64,
+	pub transaction_index: u32,
 	#[serde(rename = "blockNumber")]
-	pub block_number: i64,
+	pub block_number: u64,
 	#[serde(rename = "blockHash")]
 	pub block_hash: String,
-	pub confirmations: i64,
-	pub timestamp: i64
+	pub confirmations: u64,
+	pub timestamp: u64
 }
 
 #[derive(Debug, Deserialize)]
@@ -170,8 +170,8 @@ pub enum TransactionSequence{
 pub struct OutgoingTransaction {
 	pub from: &'static str,
 	pub to: &'static str,
-	pub value: i32,
-	pub fee: i32
+	pub value: u64,
+	pub fee: u32
 }
 
 #[derive(Debug, Deserialize)]

@@ -21,7 +21,7 @@ struct RPCResponse <T> {
 #[derive(Debug)]
 pub struct Client {
 	host: String,
-	id: i32
+	id: u64
 }
 
 impl Client {
@@ -49,8 +49,8 @@ impl Client {
 		}
 	}
 
-	pub fn block_number(&self) -> Result<i32, serde_json::Error>{
-		let response = self.send("blockNumber", ()).json::<RPCResponse<i32>>();
+	pub fn block_number(&self) -> Result<u64, serde_json::Error>{
+		let response = self.send("blockNumber", ()).json::<RPCResponse<u64>>();
 		match response {
 			Ok(v) => Ok(v.result),
 			Err(e) => Err(e)
@@ -89,8 +89,8 @@ impl Client {
 		}
 	}
 
-	pub fn get_balance(&self, id: &str) -> Result<i32, serde_json::Error>{
-		let response = self.send("getBalance", id).json::<RPCResponse<i32>>();
+	pub fn get_balance(&self, id: &str) -> Result<u64, serde_json::Error>{
+		let response = self.send("getBalance", id).json::<RPCResponse<u64>>();
 		match response {
 			Ok(v) => Ok(v.result),
 			Err(e) => Err(e)
@@ -105,7 +105,7 @@ impl Client {
 		}
 	}
 
-	pub fn get_block_by_number(&self, block_number: i32, full_transactions: bool) -> Result<primitives::Block, serde_json::Error>{
+	pub fn get_block_by_number(&self, block_number: u64, full_transactions: bool) -> Result<primitives::Block, serde_json::Error>{
 		let response = self.send("getBlockByNumber", (block_number, full_transactions)).json::<RPCResponse<primitives::Block>>();
 		match response {
 			Ok(v) => Ok(v.result),
@@ -121,23 +121,23 @@ impl Client {
 		}
 	}
 
-	pub fn get_block_transaction_count_by_hash(&self, block_hash: &str) -> Result<i32, serde_json::Error>{
-		let response = self.send("getBlockTransactionCountByHash", block_hash).json::<RPCResponse<i32>>();
+	pub fn get_block_transaction_count_by_hash(&self, block_hash: &str) -> Result<u16, serde_json::Error>{
+		let response = self.send("getBlockTransactionCountByHash", block_hash).json::<RPCResponse<u16>>();
 		match response {
 			Ok(v) => Ok(v.result),
 			Err(e) => Err(e)
 		}
 	}
 
-	pub fn get_block_transaction_count_by_number(&self, block_number: i32) -> Result<i32, serde_json::Error>{
-		let response = self.send("getBlockTransactionCountByNumber", block_number).json::<RPCResponse<i32>>();
+	pub fn get_block_transaction_count_by_number(&self, block_number: u64) -> Result<u16, serde_json::Error>{
+		let response = self.send("getBlockTransactionCountByNumber", block_number).json::<RPCResponse<u16>>();
 		match response {
 			Ok(v) => Ok(v.result),
 			Err(e) => Err(e)
 		}
 	}
 
-	pub fn get_transaction_by_block_hash_and_index(&self, block_hash: &str, index: i32) -> Result<primitives::Transaction, serde_json::Error>{
+	pub fn get_transaction_by_block_hash_and_index(&self, block_hash: &str, index: u64) -> Result<primitives::Transaction, serde_json::Error>{
 		let response = self.send("getTransactionByBlockHashAndIndex", (block_hash, index)).json::<RPCResponse<primitives::Transaction>>();
 		match response {
 			Ok(v) => Ok(v.result),
@@ -145,7 +145,7 @@ impl Client {
 		}
 	}
 
-	pub fn get_transaction_by_block_number_and_index(&self, block_number: i32, index: i32) -> Result<primitives::Transaction, serde_json::Error>{
+	pub fn get_transaction_by_block_number_and_index(&self, block_number: u64, index: u16) -> Result<primitives::Transaction, serde_json::Error>{
 		let response = self.send("getTransactionByBlockNumberAndIndex", (block_number, index)).json::<RPCResponse<primitives::Transaction>>();
 		match response {
 			Ok(v) => Ok(v.result),
@@ -169,7 +169,7 @@ impl Client {
 		}
 	}
 
-	pub fn get_transactions_by_address(&self, address: &str, amount: i32) -> Result<Vec<primitives::Transaction>, serde_json::Error>{
+	pub fn get_transactions_by_address(&self, address: &str, amount: u16) -> Result<Vec<primitives::Transaction>, serde_json::Error>{
 		let response = self.send("getTransactionsByAddress", (address, amount)).json::<RPCResponse<Vec<primitives::Transaction>>>();
 		match response {
 			Ok(v) => Ok(v.result),
@@ -185,8 +185,8 @@ impl Client {
 		}
 	}
 
-	pub fn hashrate(&self) -> Result<i32, serde_json::Error>{
-		let response = self.send("hashrate", ()).json::<RPCResponse<i32>>();
+	pub fn hashrate(&self) -> Result<u64, serde_json::Error>{
+		let response = self.send("hashrate", ()).json::<RPCResponse<u64>>();
 		match response {
 			Ok(v) => Ok(v.result),
 			Err(e) => Err(e)
@@ -225,8 +225,8 @@ impl Client {
 		}
 	}
 
-	pub fn miner_threads_with_update(&self, threads: i16) -> Result<i16, serde_json::Error>{
-		let response = self.send("minerThreads", threads).json::<RPCResponse<i16>>();
+	pub fn miner_threads_with_update(&self, threads: u16) -> Result<u16, serde_json::Error>{
+		let response = self.send("minerThreads", threads).json::<RPCResponse<u16>>();
 		match response {
 			Ok(v) => Ok(v.result),
 			Err(e) => Err(e)
