@@ -1,4 +1,6 @@
 # Nimiq RPC client
+![https://img.shields.io/crates/v/nimiq_rpc?label=nimiq_rpc](https://img.shields.io/crates/v/nimiq_rpc?label=nimiq_rpc)
+
 A Nimiq RPC client for the Rust programming language
 
 
