@@ -82,17 +82,17 @@ pub struct PeerList {
 	pub id: String,
 	pub address: String,
 	#[serde(rename = "addressState")]
-	pub address_state: u64,
+	pub address_state: i64,
 	#[serde(rename = "connectionState")]
-	pub connection_state: Option<u64>,
-	pub version: Option<u64>,
+	pub connection_state: Option<i64>,
+	pub version: Option<i64>,
 	#[serde(rename = "timeOffset")]
-	pub time_offset: Option<u64>,
+	pub time_offset: Option<i64>,
 	#[serde(rename = "headHash")]
 	pub head_hash: Option<String>,
-	pub latency: Option<u64>,
-	pub rx: Option<u64>,
-	pub tx: Option<u64>
+	pub latency: Option<i64>,
+	pub rx: Option<i64>,
+	pub tx: Option<i64>
 }
 
 #[derive(Debug, serde_derive::Serialize, serde_derive::Deserialize)]
@@ -149,13 +149,13 @@ pub struct TransactionReceipt {
 	#[serde(rename = "transactionHash")]
 	pub transaction_hash: String,
 	#[serde(rename = "transactionIndex")]
-	pub transaction_index: u32,
+	pub transaction_index: i64,
 	#[serde(rename = "blockNumber")]
-	pub block_number: u64,
+	pub block_number: i64,
 	#[serde(rename = "blockHash")]
 	pub block_hash: String,
-	pub confirmations: u64,
-	pub timestamp: u64
+	pub confirmations: i64,
+	pub timestamp: i64
 }
 
 #[derive(Debug, Deserialize)]
