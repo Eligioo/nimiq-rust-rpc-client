@@ -1,8 +1,13 @@
 [package]
-name = "nimiq-rpc"
+name = "nimiq_rpc"
 version = "0.1.0"
-authors = ["Stefan"]
+authors = ["Stefan Koolen"]
 edition = "2018"
+description = "A Nimiq RPC client for Rust"
+repository = "https://github.com/eligioo/nimiq-rust-rpc-client"
+readme = "README.md"
+keywords = ["nimiq", "rpc", "json", "blockchain", "cryptocurrency"]
+license = "Apache-2.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

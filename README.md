@@ -15,3 +15,10 @@ fn main() {
 	println!("{:?}", client.log("*", "log").unwrap());
 }
 ```
+
+# Installation:
+
+```
+[dependencies]
+nimiq_rpc = "0.1.0"
+```
