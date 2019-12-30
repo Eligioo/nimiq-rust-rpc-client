@@ -22,5 +22,5 @@ fn main() {
 
 ```
 [dependencies]
-nimiq_rpc = "0.1.0"
+nimiq_rpc = "0.1.1"
 ```
