@@ -83,7 +83,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -109,7 +116,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -135,7 +149,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -161,7 +182,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -193,7 +221,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -219,7 +254,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -245,7 +287,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -272,7 +321,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -299,7 +355,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -325,7 +388,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -351,7 +421,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -377,7 +454,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -404,7 +488,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -431,7 +522,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -457,7 +555,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -484,7 +589,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -513,7 +625,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -539,7 +658,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -565,7 +691,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -592,7 +725,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -601,7 +741,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -610,7 +757,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -619,7 +773,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -628,7 +789,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -637,7 +805,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -646,7 +821,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -672,7 +854,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -698,7 +887,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -707,7 +903,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -716,7 +919,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -725,7 +935,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -734,7 +951,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -743,7 +967,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -776,7 +1007,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -808,7 +1046,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -834,7 +1079,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 
@@ -860,7 +1112,14 @@ impl Client {
 		match response {
 			Ok(RPCResponse::Success(v)) => Ok(v.result),
 			Ok(RPCResponse::Error(v)) => Err(v.error),
-			Err(_) => panic!("Couldn't deserialize response from server!")
+			Err(_) => {
+				Err(
+					Error {
+						code: String::from("-32700"),
+						message: "Couldn't deserialize response from server!".to_string()
+					}
+				)
+			}
 		}
 	}
 }
