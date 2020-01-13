@@ -26,7 +26,7 @@ fn main() {
 
 Nimiq is a decentralized, censorship-resistant payment protocol native to the web, with its own diverse ecosystem of apps. The native NIM token is transacted within Nimiq as a store and transfer of value: it acts as digital cash. The cutting-edge, browser-first blockchain approach means that users directly connect to the blockchain with nothing more than a browser. Therefore anyone with an up-to-date browser can join the payment network directly, pay and accept payments without having to install software or rely on unnecessary intermediaries. This gives Nimiq its ‘it just works’ characteristic, which is further strengthened by an ethos of simplicity and ease of use. NIM is designed to be a cryptocurrency used by the masses.
 
-[Read more at nimiq.com](nimiq.com)
+[Read more at nimiq.com](https://nimiq.com)
 
 # Installation:
 
